@@ -3,7 +3,9 @@ var application = require("application");
 var indicator = {}
 
 indicator.show = function() {
-  this._progressDialog = android.app.ProgressDialog.show(this._getContext(), "", "Loading");
+  if (context = this._getContext()) {
+    this._progressDialog = android.app.ProgressDialog.show(context, "", "Loading");
+  }
 };
 
 indicator.hide = function() {
