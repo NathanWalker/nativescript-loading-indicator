@@ -1,10 +1,11 @@
 var application = require("application");
 
-var indicator = {}
+var indicator = {};
 
 indicator.show = function() {
   if (context = this._getContext()) {
     this._progressDialog = android.app.ProgressDialog.show(context, "", "Loading");
+    return this._progressDialog;
   }
 };
 

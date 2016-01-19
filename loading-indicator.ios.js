@@ -1,7 +1,7 @@
-var indicator = {}
+var indicator = {};
 
 indicator.show = function() {
-  MBProgressHUD.showHUDAddedToAnimated(this._getRootWindow(), true);
+  return MBProgressHUD.showHUDAddedToAnimated(this._getRootWindow(), true);
 };
 
 indicator.hide = function() {
