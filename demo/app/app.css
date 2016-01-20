@@ -1,0 +1,11 @@
+﻿.title {
+    font-size: 20;
+    horizontal-align: center;
+    margin: 20;
+}
+
+button {
+    font-size: 22;
+    horizontal-align: center;
+    margin:10px 0;
+}

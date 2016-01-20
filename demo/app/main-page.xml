@@ -1,0 +1,20 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <ActionBar title="Loading Indicator Demo"/>
+  <GridLayout rows="*,auto">
+    <ScrollView>
+      <StackLayout row="0">
+        <Button text="Message" tap="{{ showLoader }}" />
+        <Button text="Message w/details" tap="{{ showLoaderMsgAndDetails }}" />
+        <Button text="Square" tap="{{ showLoaderSquare }}" />
+        <Button text="Margin" tap="{{ showLoaderMargin }}" />
+        <Button text="Dim background" tap="{{ showLoaderDimBg }}" />
+        <Button text="Color" tap="{{ showLoaderColor }}" />
+        <Button text="Determinate" tap="{{ showLoaderDeterminate }}" />
+        <Button text="Annular determinate" tap="{{ showLoaderAnnularDeterminate }}" />
+        <Button text="Determinate horizontal bar" tap="{{ showLoaderDeterminateHorizontalBar }}" />
+        <Button text="Mode text" tap="{{ showLoaderModeText }}" />
+        <Button text="Mode custom" tap="{{ showLoaderModeCustom }}" />
+      </StackLayout>
+    </ScrollView>
+  </GridLayout>
+</Page>
