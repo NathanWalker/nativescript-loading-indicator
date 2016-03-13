@@ -1,0 +1,19 @@
+{
+  "name": "demo-loading-indicator",
+  "main": "app.js",
+  "version": "1.0.0",
+  "author": {
+    "name": "Nathan Walker",
+    "email": "walkerrunpdx@gmail.com"
+  },
+  "description": "Nativescript loading-indicator demo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pocketsmith/nativescript-loading-indicator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pocketsmith/nativescript-loading-indicator/issues"
+  },
+  "homepage": "https://github.com/pocketsmith/nativescript-loading-indicator"
+}

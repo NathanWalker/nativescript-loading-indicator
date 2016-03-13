@@ -8,7 +8,22 @@
   },
   "main": "loading-indicator.js",
   "author": "PocketSmith",
-  "nativescript": {},
+  "keywords": [
+    "NativeScript", "loading-indicator", "Loading", "Progress", "MBProgressHUD", "ProgressDialog", "Android", "iOS"
+  ],
+  "nativescript": {
+    "platforms": {
+      "android": "0.0.1",
+      "ios": "0.0.1"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "demo.ios": "npm run preparedemo; cd demo; tns emulate ios",
+		"demo.android": "npm run preparedemo; cd demo; tns run android",
+		"preparedemo": "npm run build; cd demo; tns plugin remove nativescript-loading-indicator; tns plugin add ..; tns install",
+		"setup": "cd demo; npm install; cd ..; npm run build; cd demo; tns plugin add ..; cd .."
+  },
   "license": {
     "type": "MIT",
     "url": "https://github.com/pocketsmith/nativescript-loading-indicator/blob/master/LICENSE"
