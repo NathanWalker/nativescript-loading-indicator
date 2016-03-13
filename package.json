@@ -1,6 +1,6 @@
 {
   "name": "nativescript-loading-indicator",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A NativeScript plugin for showing an overlayed loading indicator.",
   "repository": {
     "type": "git",
@@ -9,7 +9,14 @@
   "main": "loading-indicator.js",
   "author": "PocketSmith",
   "keywords": [
-    "NativeScript", "loading-indicator", "Loading", "Progress", "MBProgressHUD", "ProgressDialog", "Android", "iOS"
+    "NativeScript",
+    "loading-indicator",
+    "Loading",
+    "Progress",
+    "MBProgressHUD",
+    "ProgressDialog",
+    "Android",
+    "iOS"
   ],
   "nativescript": {
     "platforms": {
@@ -20,9 +27,9 @@
   "scripts": {
     "build": "tsc",
     "demo.ios": "npm run preparedemo; cd demo; tns emulate ios",
-		"demo.android": "npm run preparedemo; cd demo; tns run android",
-		"preparedemo": "npm run build; cd demo; tns plugin remove nativescript-loading-indicator; tns plugin add ..; tns install",
-		"setup": "cd demo; npm install; cd ..; npm run build; cd demo; tns plugin add ..; cd .."
+    "demo.android": "npm run preparedemo; cd demo; tns run android",
+    "preparedemo": "npm run build; cd demo; tns plugin remove nativescript-loading-indicator; tns plugin add ..; tns install",
+    "setup": "cd demo; npm install; cd ..; npm run build; cd demo; tns plugin add ..; cd .."
   },
   "license": {
     "type": "MIT",
