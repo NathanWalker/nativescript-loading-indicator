@@ -14,7 +14,7 @@ tns plugin add nativescript-loading-indicator
 ## Example
 
 ```js
-var LoadingIndicator = require("nativescript-loading-indicator");
+var LoadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
 
 // or with TypeScript:
 // import {LoadingIndicator} from "nativescript-loading-indicator";
