@@ -19,7 +19,7 @@ export class LoadingIndicator {
           if (options.android.cancelable !== undefined) cancelable = options.android.cancelable;
         }
         
-        this._progressDialog = android.app.ProgressDialog.show(context, "", options.message || "", indeterminate, cancelable);  
+        this._progressDialog = android.app.ProgressDialog.show(context, "", options.message || "Loading", indeterminate, cancelable);  
       } else {
         // options
         if (options.message) this._progressDialog.setMesssage(options.message);
