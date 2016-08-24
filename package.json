@@ -7,7 +7,16 @@
     "url": "https://github.com/pocketsmith/nativescript-loading-indicator.git"
   },
   "main": "loading-indicator.js",
-  "author": "PocketSmith",
+  "typings": "index.d.ts",
+  "author": {
+		"name": "PocketSmith"
+	},
+  "contributors": [
+    {
+			"name": "Nathan Walker <NathanWalker>",
+			"email": "walkerrunpdx@gmail.com"
+		}
+	],
   "keywords": [
     "NativeScript",
     "loading-indicator",
@@ -20,8 +29,8 @@
   ],
   "nativescript": {
     "platforms": {
-      "android": "0.0.1",
-      "ios": "0.0.1"
+      "android": "2.1.1",
+      "ios": "2.1.1"
     }
   },
   "scripts": {
