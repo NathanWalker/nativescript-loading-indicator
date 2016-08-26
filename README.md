@@ -1,10 +1,9 @@
 # nativescript-loading-indicator
 
-### Note: this plugin is not being actively maintained.
-
 **nativescript-loading-indicator** is a plugin for NativeScript which overlays a loading indicator on the current page. Can be used, for example, to prevent the UI being interacted with while data is being fetched from an API, while informing the user that something is happening.
 
-Under the hood, we use [MBProgressHUD](https://github.com/jdg/MBProgressHUD) on iOS, and [ProgressDialog](http://developer.android.com/reference/android/app/ProgressDialog.html) on Android.
+* iOS: [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
+* Android: [ProgressDialog](http://developer.android.com/reference/android/app/ProgressDialog.html)
 
 
 ## Installation
