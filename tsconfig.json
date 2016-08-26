@@ -4,11 +4,12 @@
         "module": "commonjs",
         "removeComments": true,
         "experimentalDecorators": true,
-        "sourceMap": true,
-        "declaration": true
+        "sourceMap": false,
+        "declaration": true,
+        "noEmitHelpers": true
     },
     "files": [
-      "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
+      "node_modules/tns-core-modules/tns-core-modules.d.ts",
       "loading-indicator.android.ts",
       "loading-indicator.ios.ts"
     ],

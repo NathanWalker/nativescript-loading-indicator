@@ -1,8 +1,10 @@
 .vscode
 *.js
 *.js.map
+node_modules
 demo/**/*.js
 demo/hooks
+demo/lib
 demo/platforms/
 demo/node_modules/
 demo/*d.ts

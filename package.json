@@ -1,6 +1,6 @@
 {
   "name": "nativescript-loading-indicator",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A NativeScript plugin for showing an overlayed loading indicator.",
   "repository": {
     "type": "git",
@@ -8,13 +8,10 @@
   },
   "main": "loading-indicator.js",
   "typings": "index.d.ts",
-  "author": {
-		"name": "PocketSmith"
-	},
+  "author": "Nathan Walker <walkerrunpdx@gmail.com>",
   "contributors": [
     {
-			"name": "Nathan Walker <NathanWalker>",
-			"email": "walkerrunpdx@gmail.com"
+			"name": "Pocketsmith"
 		}
 	],
   "keywords": [
@@ -29,8 +26,8 @@
   ],
   "nativescript": {
     "platforms": {
-      "android": "2.1.1",
-      "ios": "2.1.1"
+      "android": "2.2.0",
+      "ios": "2.2.1"
     }
   },
   "scripts": {
@@ -38,7 +35,7 @@
     "demo.ios": "npm run preparedemo; cd demo; tns emulate ios",
     "demo.android": "npm run preparedemo; cd demo; tns run android",
     "preparedemo": "npm run build; cd demo; tns plugin remove nativescript-loading-indicator; tns plugin add ..; tns install",
-    "setup": "cd demo; npm install; cd ..; npm run build; cd demo; tns plugin add ..; cd .."
+    "setup": "npm i; cd demo; npm install; cd ..; npm run build; cd demo; tns plugin add ..; cd .."
   },
   "license": {
     "type": "MIT",
@@ -47,5 +44,8 @@
   "bugs": {
     "url": "https://github.com/pocketsmith/nativescript-loading-indicator/issues"
   },
-  "homepage": "https://github.com/pocketsmith/nativescript-loading-indicator"
+  "homepage": "https://github.com/pocketsmith/nativescript-loading-indicator",
+  "devDependencies": {
+    "tns-core-modules": "^2.2.1"
+  }
 }
