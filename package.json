@@ -1,6 +1,6 @@
 {
   "name": "nativescript-loading-indicator",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A NativeScript plugin for showing an overlayed loading indicator.",
   "repository": {
     "type": "git",
@@ -26,8 +26,8 @@
   ],
   "nativescript": {
     "platforms": {
-      "android": "2.2.0",
-      "ios": "2.2.1"
+      "android": "2.3.0",
+      "ios": "2.3.0"
     }
   },
   "scripts": {
@@ -46,6 +46,6 @@
   },
   "homepage": "https://github.com/pocketsmith/nativescript-loading-indicator",
   "devDependencies": {
-    "tns-core-modules": "^2.2.1"
+    "tns-core-modules": "^2.3.0"
   }
 }
