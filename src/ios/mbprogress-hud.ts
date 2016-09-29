@@ -12,8 +12,8 @@ export class LoadingIndicator {
   private _hud: any;
 
   public show(options?: OptionsCommon) {
-    if (this._hud === undefined) this._hud = MBProgressHUD.showHUDAddedToAnimated(this._getRootWindow(), true);
-    if (options === undefined) options = {};
+    if (typeof this._hud === 'undefined') this._hud = MBProgressHUD.showHUDAddedToAnimated(this._getRootWindow(), true);
+    if (typeof options === 'undefined') options = {};
 
     // options
     if (options.message) this._hud.labelText = options.message;

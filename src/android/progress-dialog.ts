@@ -39,7 +39,10 @@ export class LoadingIndicator {
   }
 
   public hide() {
-    if (this._progressDialog !== undefined) this._progressDialog.hide();
+    if (typeof this._progressDialog !== 'undefined') {
+      this._progressDialog.hide();
+      this._progressDialog.dismiss();
+    }
     this._progressDialog = undefined;
   }
 
