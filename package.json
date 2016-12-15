@@ -1,6 +1,6 @@
 {
   "name": "nativescript-loading-indicator",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "A NativeScript plugin for showing an overlayed loading indicator.",
   "repository": {
     "type": "git",
@@ -26,8 +26,8 @@
   ],
   "nativescript": {
     "platforms": {
-      "android": "2.3.0",
-      "ios": "2.3.0"
+      "android": "2.0.0",
+      "ios": "2.0.0"
     }
   },
   "scripts": {
