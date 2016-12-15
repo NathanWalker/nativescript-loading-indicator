@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/pocketsmith/nativescript-loading-indicator.git"
   },
-  "main": "loading-indicator.js",
+  "main": "loading-indicator",
   "typings": "index.d.ts",
   "author": "Nathan Walker <walkerrunpdx@gmail.com>",
   "contributors": [
