@@ -63,7 +63,7 @@ export class LoadingTest extends Observable {
   }
 
   public showLoaderColor() {
-    this.indicator.show({ ios: { color: '#4B9ED6' } });
+    this.indicator.show({ ios: { color: '#fff', backgroundColor: '#4B9ED6' } });
     this.demoLoader();
   }
 

@@ -41,7 +41,8 @@ var options = {
     square: false,
     margin: 10,
     dimBackground: true,
-    color: "#4B9ED6",
+    color: "#4B9ED6", // color of indicator
+    backgroundColor: "yellow", // background box around indicator
     view: UIView, // Target view to show on top of (Defaults to entire window)
     mode: // see iOS specific options below
   }

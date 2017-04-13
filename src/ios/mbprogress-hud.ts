@@ -35,7 +35,10 @@ export class LoadingIndicator {
       if (ios.margin) this._hud.margin = ios.margin;
       if (ios.dimBackground) this._hud.dimBackground = true;
       if (ios.color) {
-        this._hud.color = new Color(ios.color).ios;
+        this._hud.activityIndicatorColor = new Color(ios.color).ios;
+      }
+      if (ios.backgroundColor) {
+        this._hud.color = new Color(ios.backgroundColor).ios;
       }
 
       if (ios.mode) {

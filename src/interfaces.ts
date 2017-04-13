@@ -14,6 +14,7 @@ export interface OptionsIOS {
   margin?: number;
   dimBackground?: boolean;
   color?: string;
+  backgroundColor?: string;
   view?: any; // UIView
   mode?: any;
   customView?: string;
