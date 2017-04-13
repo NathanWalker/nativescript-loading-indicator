@@ -42,6 +42,7 @@ var options = {
     margin: 10,
     dimBackground: true,
     color: "#4B9ED6",
+    view: UIView, // Target view to show on top of (Defaults to entire window)
     mode: // see iOS specific options below
   }
 };

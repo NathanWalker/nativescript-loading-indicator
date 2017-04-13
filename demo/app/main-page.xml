@@ -4,6 +4,11 @@
     <ScrollView>
       <StackLayout row="0">
         <Button text="Message" tap="{{ showLoader }}" />
+
+        <!-- uncomment test iOS target view, see main-view-model for more -->
+        <!--<StackLayout width="300" height="300" id="stackView" backgroundColor="yellow">
+        </StackLayout>-->
+
         <Button text="Message w/details" tap="{{ showLoaderMsgAndDetails }}" />
         <Button text="Square" tap="{{ showLoaderSquare }}" />
         <Button text="Margin" tap="{{ showLoaderMargin }}" />

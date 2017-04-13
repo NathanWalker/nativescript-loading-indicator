@@ -1,9 +1,9 @@
-import application = require("application");
+import application = require('application');
 if (application.ios) {
-  application.mainModule = "main-page";  
+  application.mainModule = 'main-page';  
 } else if (application.android) {
-  application.mainModule = "main-page-android";
+  application.mainModule = 'main-page-android';
 }
 
-application.cssFile = "./app.css";
+application.cssFile = './app.css';
 application.start();

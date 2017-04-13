@@ -10,29 +10,38 @@ declare var UIImage: any;
 
 export class LoadingIndicator {
   private _hud: any;
+  // iOS allows indicator to be shown on specific views if desired
+  // fallback to entire window
+  private _targetView: any; // UIView
 
   public show(options?: OptionsCommon) {
-    if (typeof this._hud === 'undefined') this._hud = MBProgressHUD.showHUDAddedToAnimated(this._getRootWindow(), true);
     if (typeof options === 'undefined') options = {};
+    let ios = options.ios;
+
+    if (typeof this._hud === 'undefined') {
+      // use specific target, fallback to entire window
+      this._targetView = ios && ios.view ? ios.view : this._getRootWindow();
+      this._hud = MBProgressHUD.showHUDAddedToAnimated(this._targetView, true);
+    }
 
     // options
     if (options.message) this._hud.labelText = options.message;
     if (options.progress) this._hud.progress = options.progress;
 
     // ios specific
-    if (options.ios) {
-      if (options.ios.details) this._hud.detailsLabelText = options.ios.details;
-      if (options.ios.square) this._hud.square = true;
-      if (options.ios.margin) this._hud.margin = options.ios.margin;
-      if (options.ios.dimBackground) this._hud.dimBackground = true;
-      if (options.ios.color) {
-        this._hud.color = new Color(options.ios.color).ios;
+    if (ios) {
+      if (ios.details) this._hud.detailsLabelText = ios.details;
+      if (ios.square) this._hud.square = true;
+      if (ios.margin) this._hud.margin = ios.margin;
+      if (ios.dimBackground) this._hud.dimBackground = true;
+      if (ios.color) {
+        this._hud.color = new Color(ios.color).ios;
       }
 
-      if (options.ios.mode) {
-        this._hud.mode = options.ios.mode;
-        if (options.ios.mode === MBProgressHUDModeCustomView && options.ios.customView) {
-          this._hud.customView = UIImageView.alloc().initWithImage(UIImage.imageNamed(options.ios.customView));
+      if (ios.mode) {
+        this._hud.mode = ios.mode;
+        if (ios.mode === MBProgressHUDModeCustomView && ios.customView) {
+          this._hud.customView = UIImageView.alloc().initWithImage(UIImage.imageNamed(ios.customView));
         }
       }
     }
@@ -40,8 +49,9 @@ export class LoadingIndicator {
     return this._hud;
   }
 
-  public hide() {
-    MBProgressHUD.hideHUDForViewAnimated(this._getRootWindow(), true);
+  public hide(targetView?: any) {
+    targetView = targetView || this._targetView || this._getRootWindow();
+    MBProgressHUD.hideHUDForViewAnimated(targetView, true);
     this._hud = undefined;
   }
 

@@ -1,30 +1,31 @@
-import {Observable} from "data/observable";
-import {LoadingIndicator} from "nativescript-loading-indicator";
+import { Observable } from 'data/observable';
+import { Page } from 'ui/page';
+import { LoadingIndicator } from 'nativescript-loading-indicator';
 
 export class LoadingAndroidTest extends Observable {
   private indicator: LoadingIndicator;
-  
-  constructor() {
+
+  constructor(page: Page) {
     super();
     this.indicator = new LoadingIndicator();
   }
-  
+
   public showLoader() {
     this.indicator.show({ message: 'Loading test...' });
     this.demoLoader();
   }
-  
+
   public showLoaderIndeterminate() {
     this.indicator.show({ android: { indeterminate: true } });
     this.demoProgress();
   }
-  
+
   private demoLoader() {
     setTimeout(() => {
       this.indicator.hide();
     }, 3000);
   }
-  
+
   private demoProgress() {
     setTimeout(() => {
       this.indicator.show({ progress: 15 });

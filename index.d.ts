@@ -13,6 +13,7 @@ export interface OptionsIOS {
     margin?: number;
     dimBackground?: boolean;
     color?: string;
+    view?: any; // UIView to target
     mode?: any;
     customView?: string;
 }

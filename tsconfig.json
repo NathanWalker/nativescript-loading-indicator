@@ -1,17 +1,23 @@
 {
     "compilerOptions": {
-        "target": "es5",
         "module": "commonjs",
-        "removeComments": true,
+        "target": "es5",
         "experimentalDecorators": true,
-        "sourceMap": false,
-        "declaration": true,
-        "noEmitHelpers": true
+        "emitDecoratorMetadata": true,
+        "noEmitHelpers": true,
+        "noEmitOnError": true,
+        "noImplicitAny": false,
+        "skipLibCheck": true,
+        "lib": [
+            "es2016"
+        ]
     },
-    "files": [
-      "node_modules/tns-core-modules/tns-core-modules.d.ts",
-      "loading-indicator.android.ts",
-      "loading-indicator.ios.ts"
-    ],
-    "compileOnSave": false
+    "exclude": [
+        "demo",
+        "node_modules",
+        "platforms",
+        "typings",
+        "typings*",
+        "**/*.aot.ts"
+    ]
 }
