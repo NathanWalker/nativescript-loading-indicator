@@ -38,11 +38,13 @@ var options = {
   },
   ios: {
     details: "Additional detail note!",
-    square: false,
     margin: 10,
     dimBackground: true,
-    color: "#4B9ED6", // color of indicator
-    backgroundColor: "yellow", // background box around indicator
+    color: "#4B9ED6", // color of indicator and labels
+    // background box around indicator
+    // hideBezel will override this if true
+    backgroundColor: "yellow",
+    hideBezel: true, // default false, can hide the surrounding bezel
     view: UIView, // Target view to show on top of (Defaults to entire window)
     mode: // see iOS specific options below
   }
@@ -76,7 +78,6 @@ Quick `Mode` Reference:
 * `MBProgressHUDModeText`
 * `MBProgressHUDModeCustomView`
   * use with `customView: string` - local path to an image file
-
 
 ## Screenshots
 

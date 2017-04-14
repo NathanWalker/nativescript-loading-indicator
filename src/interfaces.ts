@@ -13,6 +13,7 @@ export interface OptionsIOS {
   square?: boolean;
   margin?: number;
   dimBackground?: boolean;
+  hideBezel?: boolean; // hide bezel around indicator
   color?: string;
   backgroundColor?: string;
   view?: any; // UIView

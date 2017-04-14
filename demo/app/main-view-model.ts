@@ -39,6 +39,17 @@ export class LoadingTest extends Observable {
     // }
   }
 
+  public showLoaderNoBezel() {
+    this.indicator.show({
+      message: 'Loading, no bezel!',
+      ios: {
+        color: '#000',
+        hideBezel: true
+      }
+    });
+    this.demoLoader();
+  }
+
   public showLoaderMsgAndDetails() {
     this.indicator.show({ message: 'One moment', ios: { details: 'Updating data...' } });
     setTimeout(() => {

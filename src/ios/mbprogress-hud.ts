@@ -35,10 +35,23 @@ export class LoadingIndicator {
       if (ios.margin) this._hud.margin = ios.margin;
       if (ios.dimBackground) this._hud.dimBackground = true;
       if (ios.color) {
+        // make activity and main label same color
         this._hud.activityIndicatorColor = new Color(ios.color).ios;
+        this._hud.labelColor = new Color(ios.color).ios;
+        if (ios.details) {
+          // detail label same color with 80% opacity of that color
+          // TODO: allow specific control
+          this._hud.detailsLabelColor = new Color(ios.color).ios;
+          this._hud.detailsLabel.opacity = .8;
+        }
       }
       if (ios.backgroundColor) {
         this._hud.color = new Color(ios.backgroundColor).ios;
+      }
+      if (ios.hideBezel) {
+        this._hud.backgroundColor = UIColor.clearColor;
+        this._hud.bezelView.style = MBProgressHUDBackgroundStyle.SolidColor;
+        this._hud.bezelView.backgroundColor = UIColor.clearColor;
       }
 
       if (ios.mode) {

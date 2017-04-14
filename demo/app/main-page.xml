@@ -4,6 +4,7 @@
     <ScrollView>
       <StackLayout row="0">
         <Button text="Message" tap="{{ showLoader }}" />
+        <Button text="Message - No Bezel" tap="{{ showLoaderNoBezel }}" />
 
         <!-- uncomment test iOS target view, see main-view-model for more -->
         <!--<StackLayout width="300" height="300" id="stackView" backgroundColor="yellow">
