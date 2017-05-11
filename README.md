@@ -68,7 +68,7 @@ loader.hide();
 
 #### iOS Specific
 
-* Reference: https://github.com/jdg/MBProgressHUD/blob/master/Demo/Classes/MBHudDemoViewController.m
+* Reference: https://github.com/jdg/MBProgressHUD/blob/master/Demo/HudDemo/MBHudDemoViewController.m
 
 Quick `Mode` Reference:
 
