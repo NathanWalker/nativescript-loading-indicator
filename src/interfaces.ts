@@ -6,6 +6,7 @@ export interface OptionsAndroid {
   progressPercentFormat?: number;
   progressStyle?: number;
   secondaryProgress?: number;
+  cancelListener?: (dialog: any) => void;
 }
 
 export interface OptionsIOS {

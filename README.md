@@ -30,6 +30,7 @@ var options = {
   android: {
     indeterminate: true,
     cancelable: false,
+    cancelListener: function(dialog) { console.log("Loading cancelled") },
     max: 100,
     progressNumberFormat: "%1d/%2d",
     progressPercentFormat: 0.53,
