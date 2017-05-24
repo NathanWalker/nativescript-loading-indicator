@@ -23,7 +23,7 @@ export class LoadingIndicator {
           }
         }
 
-        this._progressDialog = android.app.ProgressDialog.show(context, "", options.message || "Loading", indeterminate, cancelable);
+        this._progressDialog = android.app.ProgressDialog.show(context, "", options.message || "Loading", indeterminate, cancelable, cancelListener);
       } else if (this._progressDialog) {
         // options
         if (options.message && this._progressDialog.setMesssage) this._progressDialog.setMesssage(options.message);
