@@ -1,12 +1,13 @@
 import {OptionsCommon} from '../interfaces';
-import {Color} from 'color';
-import * as utils from 'utils/utils';
+import {Color} from 'tns-core-modules/color';
+import * as utils from 'tns-core-modules/utils/utils';
 
 declare var MBProgressHUD: any;
 declare var MBProgressHUDModeCustomView: any;
 declare var UIApplication: any;
 declare var UIImageView: any;
 declare var UIImage: any;
+declare var MBProgressHUDBackgroundStyle, UIColor;
 
 export class LoadingIndicator {
   private _hud: any;

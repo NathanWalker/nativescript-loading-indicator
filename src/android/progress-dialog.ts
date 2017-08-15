@@ -1,5 +1,5 @@
 import {OptionsCommon} from '../interfaces';
-import * as application from 'application';
+import * as application from 'tns-core-modules/application';
 
 declare var android: any;
 
