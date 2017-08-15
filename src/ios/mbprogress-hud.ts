@@ -48,6 +48,9 @@ export class LoadingIndicator {
       if (ios.backgroundColor) {
         this._hud.color = new Color(ios.backgroundColor).ios;
       }
+      if(!ios.userInteractionEnabled){
+        this._hud.userInteractionEnabled = false;
+      }
       if (ios.hideBezel) {
         this._hud.backgroundColor = UIColor.clearColor;
         this._hud.bezelView.style = MBProgressHUDBackgroundStyle.SolidColor;
