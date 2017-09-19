@@ -14,12 +14,16 @@ export class LoadingIndicator {
         // Create
         let indeterminate = true;
         let cancelable = false;
+        let cancelListener = null;
         if (options.android) {
           if (options.android.indeterminate !== undefined) indeterminate = options.android.indeterminate;
           if (options.android.cancelable !== undefined) cancelable = options.android.cancelable;
+          if (options.android.cancelListener && typeof options.android.cancelListener === 'function') {
+            cancelListener = this.createOnCancelListener(options.android.cancelListener);
+          }
         }
 
-        this._progressDialog = android.app.ProgressDialog.show(context, "", options.message || "Loading", indeterminate, cancelable);
+        this._progressDialog = android.app.ProgressDialog.show(context, "", options.message || "Loading", indeterminate, cancelable, cancelListener);
       } else if (this._progressDialog) {
         // options
         if (options.message && this._progressDialog.setMesssage) this._progressDialog.setMesssage(options.message);
@@ -32,10 +36,19 @@ export class LoadingIndicator {
           if (options.android.progressPercentFormat) this._progressDialog.setProgressPercentFormat(options.android.progressPercentFormat);
           if (options.android.progressStyle) this._progressDialog.setProgressStyle(options.android.progressStyle);
           if (options.android.secondaryProgress) this._progressDialog.setSecondaryProgress(options.android.secondaryProgress);
+          if (options.android.cancelListener && typeof options.android.cancelListener === 'function') {
+            this._progressDialog.setOnCancelListener(this.createOnCancelListener(options.android.cancelListener));
+          }
         }
       }
       return this._progressDialog;
     }
+  }
+
+  private createOnCancelListener(cancelListener: (dialog: any) => void) {
+    return new android.content.DialogInterface.OnCancelListener({
+            onCancel: (dialog) => cancelListener(dialog)
+        }); 
   }
 
   public hide() {
