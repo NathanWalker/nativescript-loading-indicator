@@ -49,7 +49,7 @@ export class LoadingIndicator {
       if (ios.backgroundColor) {
         this._hud.color = new Color(ios.backgroundColor).ios;
       }
-      if(!ios.userInteractionEnabled){
+      if(ios.userInteractionEnabled === false){
         this._hud.userInteractionEnabled = false;
       }
       if (ios.hideBezel) {
