@@ -1,6 +1,6 @@
 {
   "name": "nativescript-loading-indicator",
-  "version": "2.3.2",
+  "version": "2.4.0",
   "description": "A NativeScript plugin for showing an overlayed loading indicator.",
   "repository": {
     "type": "git",
@@ -11,9 +11,9 @@
   "author": "Nathan Walker <walkerrunpdx@gmail.com>",
   "contributors": [
     {
-			"name": "Pocketsmith"
-		}
-	],
+      "name": "Pocketsmith"
+    }
+  ],
   "keywords": [
     "NativeScript",
     "loading-indicator",
@@ -38,11 +38,12 @@
     "demo.ios": "npm run preparedemo; cd demo; tns run ios --emulator",
     "demo.android": "npm run preparedemo; cd demo; tns run android --emulator",
     "preparedemo": "npm run build; cd demo; tns plugin remove nativescript-loading-indicator; tns plugin add ..; tns install",
-    "setup": "npm i; cd demo; npm install; cd ..; npm run build; cd demo; tns plugin add ..; cd .."
+    "setup": "npm i; cd demo; npm install; cd ..; npm run build; cd demo; tns plugin add ..; cd ..",
+    "reset": "rm -rf node_modules && cd demo && rm -rf node_modules hooks platforms && cd .."
   },
   "devDependencies": {
-    "tns-core-modules": "~2.5.2",
-    "tns-platform-declarations": "^2.5.2",
-    "typescript": "~2.1.0"
+    "tns-core-modules": "~3.2.0",
+    "tns-platform-declarations": "~3.2.0",
+    "typescript": "~2.5.2"
   }
 }

@@ -12,3 +12,4 @@ demo/tsconfig.json
 *.log
 *.d.ts
 !index.d.ts
+package-lock.json

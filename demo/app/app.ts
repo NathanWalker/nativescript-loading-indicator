@@ -1,9 +1,8 @@
-import application = require('application');
-if (application.ios) {
-  application.mainModule = 'main-page';  
-} else if (application.android) {
-  application.mainModule = 'main-page-android';
-}
+import * as application from "tns-core-modules/application";
 
-application.cssFile = './app.css';
-application.start();
+application.setCssFileName('./app.css');
+if (application.ios) {
+  application.start('main-page');
+} else if (application.android) {
+  application.start('main-page-android');
+}

@@ -2,8 +2,6 @@ import { Observable } from 'data/observable';
 import { Page } from 'ui/page';
 import { LoadingIndicator } from 'nativescript-loading-indicator';
 
-declare var MBProgressHUDModeDeterminate, MBProgressHUDModeAnnularDeterminate, MBProgressHUDModeDeterminateHorizontalBar, MBProgressHUDModeText, MBProgressHUDModeCustomView;
-
 export class LoadingTest extends Observable {
   private indicator: LoadingIndicator;
   private stackView: any;
@@ -79,27 +77,27 @@ export class LoadingTest extends Observable {
   }
 
   public showLoaderDeterminate() {
-    this.indicator.show({ ios: { mode: MBProgressHUDModeDeterminate } });
+    this.indicator.show({ ios: { mode: MBProgressHUDMode.Determinate } });
     this.demoProgress();
   }
 
   public showLoaderAnnularDeterminate() {
-    this.indicator.show({ ios: { mode: MBProgressHUDModeAnnularDeterminate } });
+    this.indicator.show({ ios: { mode: MBProgressHUDMode.AnnularDeterminate } });
     this.demoProgress();
   }
 
   public showLoaderDeterminateHorizontalBar() {
-    this.indicator.show({ ios: { mode: MBProgressHUDModeDeterminateHorizontalBar } });
+    this.indicator.show({ ios: { mode: MBProgressHUDMode.DeterminateHorizontalBar } });
     this.demoProgress();
   }
 
   public showLoaderModeText() {
-    this.indicator.show({ message: 'Text only', ios: { mode: MBProgressHUDModeText } });
+    this.indicator.show({ message: 'Text only', ios: { mode: MBProgressHUDMode.Text } });
     this.demoLoader();
   }
 
   public showLoaderModeCustom() {
-    this.indicator.show({ message: 'Completed', ios: { mode: MBProgressHUDModeCustomView, customView: 'Checkmark.png' } });
+    this.indicator.show({ message: 'Completed', ios: { mode: MBProgressHUDMode.CustomView, customView: 'Checkmark.png' } });
     this.demoLoader();
   }
 

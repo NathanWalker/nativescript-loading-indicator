@@ -2,23 +2,23 @@
   "nativescript": {
     "id": "org.nativescript.demo",
     "tns-android": {
-      "version": "2.5.0"
+      "version": "3.0.0"
     },
     "tns-ios": {
-      "version": "2.5.0"
+      "version": "3.0.0"
     }
   },
   "dependencies": {
-    "nativescript-loading-indicator": "file:///Users/nathan/Documents/github/NathanWalker/nativescript-loading-indicator",
-    "tns-core-modules": "~2.5.2"
+    "nativescript-loading-indicator": "file:..",
+    "tns-core-modules": "~3.2.0"
   },
   "devDependencies": {
     "babel-traverse": "6.13.0",
     "babel-types": "6.13.0",
     "babylon": "6.8.4",
     "lazy": "1.0.11",
-    "nativescript-dev-typescript": "^0.3.1",
+    "nativescript-dev-typescript": "^0.5.0",
     "shelljs": "^0.5.3",
-    "typescript": "~2.1.0"
+    "typescript": "~2.5.2"
   }
 }

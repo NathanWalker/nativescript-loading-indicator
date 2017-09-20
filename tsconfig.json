@@ -8,10 +8,7 @@
         "noEmitHelpers": true,
         "noEmitOnError": true,
         "noImplicitAny": false,
-        "skipLibCheck": true,
-        "lib": [
-            "es2016"
-        ]
+        "skipLibCheck": true
     },
     "exclude": [
         "demo",
