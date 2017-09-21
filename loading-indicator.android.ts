@@ -2,7 +2,7 @@
  * Interfaces
  */
 
-export * from './src/interfaces';
+export * from './src/interfaces'; 
 
 /**
  * LoadingIndicator

@@ -5,6 +5,7 @@ import * as utils from 'tns-core-modules/utils/utils';
 declare var UIApplication: any;
 declare var UIImageView: any;
 declare var UIImage: any;
+declare var MBProgressHUDBackgroundStyle, UIColor;
 
 export class LoadingIndicator {
   private _hud: any;
@@ -45,6 +46,9 @@ export class LoadingIndicator {
       }
       if (ios.backgroundColor) {
         this._hud.color = new Color(ios.backgroundColor).ios;
+      }
+      if(ios.userInteractionEnabled === false){
+        this._hud.userInteractionEnabled = false;
       }
       if (ios.hideBezel) {
         this._hud.backgroundColor = UIColor.clearColor;

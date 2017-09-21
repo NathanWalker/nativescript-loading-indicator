@@ -17,6 +17,7 @@ export interface OptionsIOS {
   hideBezel?: boolean; // hide bezel around indicator
   color?: string;
   backgroundColor?: string;
+  userInteractionEnabled?: boolean;
   view?: any; // UIView
   mode?: any;
   customView?: string;

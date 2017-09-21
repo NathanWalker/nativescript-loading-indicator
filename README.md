@@ -45,6 +45,7 @@ var options = {
     // background box around indicator
     // hideBezel will override this if true
     backgroundColor: "yellow",
+    userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
     hideBezel: true, // default false, can hide the surrounding bezel
     view: UIView, // Target view to show on top of (Defaults to entire window)
     mode: // see iOS specific options below
