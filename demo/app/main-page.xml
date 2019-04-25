@@ -15,6 +15,7 @@
         <Button text="Margin" tap="{{ showLoaderMargin }}" />
         <Button text="Dim background" tap="{{ showLoaderDimBg }}" />
         <Button text="Color" tap="{{ showLoaderColor }}" />
+        <Button text="Cancel Loader" tap="{{ showLoaderCancel }}" />
         <Button text="Determinate" tap="{{ showLoaderDeterminate }}" />
         <Button text="Annular determinate" tap="{{ showLoaderAnnularDeterminate }}" />
         <Button text="Determinate horizontal bar" tap="{{ showLoaderDeterminateHorizontalBar }}" />

@@ -1,8 +1,0 @@
-demo/
-*.png
-*.log
-screenshots
-node_modules
-*.ts
-*.map
-!index.d.ts
