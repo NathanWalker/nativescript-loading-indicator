@@ -1,0 +1,72 @@
+{
+  "name": "nativescript-loading-indicator",
+  "version": "2.4.0",
+  "description": "A NativeScript plugin for showing an overlayed loading indicator.",
+  "main": "loading-indicator",
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "android": "2.5.0",
+      "ios": "2.5.0"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NathanWalker/nativescript-loading-indicator.git"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "build": "npm run tsc && npm run build.native",
+    "build.native": "node scripts/build-native.js",
+    "postclone": "npm i && node scripts/postclone.js && cd ../demo && npm i && npx rimraf -- package-lock.json && cd ../src",
+    "test.android": "npm run tsc && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
+    "test.ios": "npm run tsc && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
+    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
+    "plugin.tscwatch": "npm run tsc -- -w",
+    "demo.ios": "npm run tsc && cd ../demo && tns run ios --syncAllFiles --emulator",
+    "demo.android": "npm run tsc && cd ../demo && tns run android --syncAllFiles --emulator",
+    "demo.reset": "cd ../demo && npx rimraf -- hooks node_modules platforms package-lock.json",
+    "plugin.prepare": "npm run build && cd ../demo && tns plugin remove nativescript-loading-indicator && tns plugin add ../src",
+    "clean": "npm run demo.reset && npx rimraf -- node_modules package-lock.json && npm i",
+    "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/platforms/**'",
+    "prepack": "npm run build.native"
+  },
+  "keywords": [
+    "NativeScript",
+    "JavaScript",
+    "Android",
+    "iOS",
+    "loading-indicator",
+    "Loading",
+    "Progress",
+    "MBProgressHUD",
+    "ProgressDialog"
+  ],
+  "author": {
+    "name": "Nathan Walker",
+    "email": "walkerrunpdx@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Osei Fortune",
+      "email": "fortune.osei@yahoo.com"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/NathanWalker/nativescript-loading-indicator/issues"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/NathanWalker/nativescript-loading-indicator",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "tns-core-modules": "^5.0.0",
+    "tns-platform-declarations": "^5.0.0",
+    "typescript": "~3.3.3",
+    "prompt": "^1.0.0",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.12.1",
+    "semver": "^5.6.0"
+  },
+  "dependencies": {},
+  "bootstrapper": "nativescript-plugin-seed"
+}
