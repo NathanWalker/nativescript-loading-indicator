@@ -48,6 +48,9 @@ export class LoadingIndicator {
     const ref = new WeakRef(this);
     this._popOver.setTouchable(options.android.userInteractionEnabled);
     const contentView = new android.widget.LinearLayout(context);
+    const defaultTextColor = new Color(options.android.color || 'android');
+    const defaultTextNativeColor = defaultTextColor.android ? defaultTextColor.android : android.graphics.Color.BLACK;
+    const defaultDetailsNativeColor = new Color(255 * .8, defaultTextColor.r, defaultTextColor.g, defaultTextColor.b).android;
     contentView.setOnTouchListener(new android.view.View.OnTouchListener({
       onTouch(view: android.view.View, event: android.view.MotionEvent): boolean {
         const cancelListener = options.android.cancelListener;
@@ -66,7 +69,7 @@ export class LoadingIndicator {
     const defaultBackgroundColor = android.graphics.Color.WHITE;
     contentView.setBackgroundColor(
       options.android.dimBackground
-        ? new Color('#80000000').android
+        ? new Color(255 * .6, 0, 0, 0).android
         : android.graphics.Color.TRANSPARENT
     );
     contentView.setGravity(android.view.Gravity.CENTER);
@@ -153,6 +156,12 @@ export class LoadingIndicator {
       const messageView = new android.widget.TextView(context);
       messageView.setText(options.message);
       messageView.setId(this._messageId);
+      if (options.android.color) {
+        messageView.setTextColor(defaultTextNativeColor);
+      }
+      messageView.setLayoutParams(
+        new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT)
+      );
       parentView.addView(messageView);
     }
 
@@ -160,6 +169,10 @@ export class LoadingIndicator {
       const detailsView = new android.widget.TextView(context);
       detailsView.setText(options.android.details);
       detailsView.setId(this._detailsId);
+      detailsView.setTextColor(defaultDetailsNativeColor);
+      detailsView.setLayoutParams(
+        new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT)
+      );
       parentView.addView(detailsView);
     }
 
@@ -229,6 +242,9 @@ export class LoadingIndicator {
       0
     ) as android.widget.LinearLayout;
     let count = parentView.getChildCount();
+    const defaultTextColor = new Color(options.android.color || 'android');
+    const defaultTextNativeColor = defaultTextColor.android ? defaultTextColor.android : android.graphics.Color.BLACK;
+    const defaultDetailsNativeColor = new Color(255 * .8, defaultTextColor.r, defaultTextColor.g, defaultTextColor.b).android;
     if (options.mode === Mode.Text) {
       let progressView = parentView.getChildAt(0) as any;
       if (progressView) {
@@ -253,7 +269,7 @@ export class LoadingIndicator {
     if (options.progress && options.mode !== Mode.Text && options.mode !== Mode.CustomView) {
       let progressView = parentView.getChildAt(0) as any;
       const progressViewId = progressView.getId();
-      if (progressViewId === this._progressId && progressView.isIndeterminate()) {
+      if ((progressView instanceof android.widget.ProgressBar) && progressViewId === this._progressId && progressView.isIndeterminate()) {
         parentView.removeView(progressView);
         progressView = this._createDeterminateProgressView(context);
         parentView.addView(progressView, 0);
@@ -264,12 +280,28 @@ export class LoadingIndicator {
         parentView.addView(progressView, 0);
       }
       count = parentView.getChildCount();
+
+      if (options.android.color) {
+        this._setColor(options.android.color, progressView);
+        this._currentProgressColor = new Color(options.android.color);
+      }
+      if (options.android.backgroundColor) {
+        this._setBackgroundColor(options.android.backgroundColor, progressView);
+      }
+
       progressView.setProgress(options.progress * 100);
     }
     if (!options.progress && options.mode !== Mode.Text && options.mode !== Mode.CustomView && options.android.indeterminate) {
       const progressView = new android.widget.ProgressBar(context);
       progressView.setId(this._progressId);
       parentView.addView(progressView, 0);
+      if (options.android.color) {
+        this._setColor(options.android.color, progressView);
+        this._currentProgressColor = new Color(options.android.color);
+      }
+      if (options.android.backgroundColor) {
+        this._setBackgroundColor(options.android.backgroundColor, progressView);
+      }
       count = parentView.getChildCount();
     }
     if (options.message) {
@@ -279,11 +311,16 @@ export class LoadingIndicator {
       switch (count) {
         case 1:
           if (firstView.getId() === this._messageId) {
+            firstView.setTextColor(defaultTextNativeColor);
             firstView.setText(options.message);
           } else {
             messageView = new android.widget.TextView(context);
             messageView.setId(this._messageId);
             messageView.setText(options.message);
+            messageView.setTextColor(defaultTextNativeColor);
+            messageView.setLayoutParams(
+              new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT)
+            );
             parentView.addView(messageView);
           }
 
@@ -293,15 +330,21 @@ export class LoadingIndicator {
           const viewId = view.getId();
           if (viewId === this._messageId) {
             view.setText(options.message);
+            view.setTextColor(defaultTextNativeColor);
           } else if (viewId === this._detailsId) {
             messageView = new android.widget.TextView(context);
             messageView.setId(this._messageId);
             messageView.setText(options.message);
+            messageView.setTextColor(defaultTextNativeColor);
+            messageView.setLayoutParams(
+              new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT)
+            );
             parentView.addView(messageView, 1);
           }
           break;
         case 3:
           view = parentView.getChildAt(2) as any;
+          view.setTextColor(defaultTextNativeColor);
           view.setText(options.message);
           break;
         default:
@@ -315,11 +358,16 @@ export class LoadingIndicator {
         case 1:
           const firstView = parentView.getChildAt(0) as any;
           if (firstView === this._detailsId) {
+            firstView.setTextColor(defaultDetailsNativeColor);
             firstView.setText(options.android.details);
           } else {
             detailsView = new android.widget.TextView(context);
             detailsView.setId(this._detailsId);
+            detailsView.setTextColor(defaultDetailsNativeColor);
             detailsView.setText(options.android.details);
+            detailsView.setLayoutParams(
+              new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT)
+            );
             parentView.addView(detailsView);
           }
 
@@ -330,11 +378,16 @@ export class LoadingIndicator {
           ) as android.widget.TextView;
           const detailsViewId = detailsView.getId();
           if (detailsViewId === this._detailsId) {
+            detailsView.setTextColor(defaultDetailsNativeColor);
             detailsView.setText(options.android.details);
           } else if (detailsViewId === this._messageId) {
             detailsView = new android.widget.TextView(context);
             detailsView.setId(this._detailsId);
+            detailsView.setTextColor(defaultDetailsNativeColor);
             detailsView.setText(options.android.details);
+            detailsView.setLayoutParams(
+              new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT)
+            );
             parentView.addView(detailsView, 2);
           }
           break;
@@ -342,6 +395,7 @@ export class LoadingIndicator {
           detailsView = parentView.getChildAt(
             2
           ) as android.widget.TextView;
+          detailsView.setTextColor(defaultDetailsNativeColor);
           detailsView.setText(options.android.details);
           break;
         default:
