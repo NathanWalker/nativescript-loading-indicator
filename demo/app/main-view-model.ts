@@ -18,7 +18,16 @@ export class LoadingTest extends Observable {
     this.indicator.show({
       message: 'Loading test...'
     });
-    this.demoLoader();
+    setTimeout(() => {
+      this.indicator.show({message: 'TextMode', android: {mode: Mode.Text}});
+    }, 1000);
+    setTimeout(() => {
+      this.indicator.show({
+        message: 'Updating',
+        android: { indeterminate: true }
+      });
+      this.demoProgress();
+    }, 3000);
 
     // to test target view
     // uncomment - then can toggle this method to show/hide in target
