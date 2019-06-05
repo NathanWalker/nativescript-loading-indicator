@@ -48,7 +48,7 @@ export class LoadingIndicator {
     const ref = new WeakRef(this);
     this._popOver.setTouchable(options.android.userInteractionEnabled);
     const contentView = new android.widget.LinearLayout(context);
-    const defaultTextColor = new Color(options.android.color || 'android');
+    const defaultTextColor = new Color(options.android.color || 'black');
     const defaultTextNativeColor = defaultTextColor.android ? defaultTextColor.android : android.graphics.Color.BLACK;
     const defaultDetailsNativeColor = new Color(255 * .8, defaultTextColor.r, defaultTextColor.g, defaultTextColor.b).android;
     contentView.setOnTouchListener(new android.view.View.OnTouchListener({
