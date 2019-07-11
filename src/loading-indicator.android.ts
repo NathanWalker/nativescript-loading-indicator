@@ -3,6 +3,7 @@ import { Color } from 'tns-core-modules/color';
 import { fromFileOrResource } from 'tns-core-modules/image-source';
 import { screen } from 'tns-core-modules/platform';
 import { topmost } from 'tns-core-modules/ui/frame';
+import { ad as androidUtils } from 'tns-core-modules/utils/utils';
 import { Mode, OptionsCommon } from './loading-indicator.common';
 
 export * from './loading-indicator.common';
@@ -37,14 +38,13 @@ export class LoadingIndicator {
     this._customViewId = android.view.View.generateViewId();
   }
 
-  public show(options?: OptionsCommon) {
-    const context = this._getContext();
+  show(options?: OptionsCommon) {
+    const context = androidUtils.getApplicationContext();
     if (context) {
       options = options || {};
       options.android = options.android || {};
-      options.android.userInteractionEnabled =
-        options.android.userInteractionEnabled !== undefined || true;
-      options.mode = options.android.mode || options.mode;
+      options.userInteractionEnabled =
+        options.userInteractionEnabled !== undefined || true;
       if (!this._popOver) {
         this._createPopOver(context, options);
       } else {
@@ -53,12 +53,20 @@ export class LoadingIndicator {
     }
   }
 
+  hide() {
+    if (this._popOver) {
+      this._popOver.dismiss();
+      this._popOver = null;
+      this._currentProgressColor = null;
+    }
+  }
+
   private _createPopOver(context, options?: OptionsCommon) {
     this._popOver = new android.widget.PopupWindow();
     const ref = new WeakRef(this);
-    this._popOver.setTouchable(options.android.userInteractionEnabled);
+    this._popOver.setTouchable(options.userInteractionEnabled);
     const contentView = new android.widget.LinearLayout(context);
-    const defaultTextColor = new Color(options.android.color || '#000');
+    const defaultTextColor = new Color(options.color || '#000');
     const defaultTextNativeColor = defaultTextColor.android
       ? defaultTextColor.android
       : android.graphics.Color.BLACK;
@@ -90,11 +98,14 @@ export class LoadingIndicator {
       })
     );
     const defaultBackgroundColor = android.graphics.Color.WHITE;
+
+    // handle dimming background option
     contentView.setBackgroundColor(
-      options.android.dimBackground
+      options.dimBackground
         ? new Color(255 * 0.6, 0, 0, 0).android
         : android.graphics.Color.TRANSPARENT
     );
+
     contentView.setGravity(android.view.Gravity.CENTER);
     contentView.setLayoutParams(
       new android.view.ViewGroup.LayoutParams(
@@ -131,35 +142,40 @@ export class LoadingIndicator {
       defaultPadding,
       defaultPadding
     );
-    if (options.android.margin !== undefined) {
-      const margin = options.android.margin * screen.mainScreen.scale;
+
+    // handle margin option
+    if (options.margin !== undefined) {
+      const margin = options.margin * screen.mainScreen.scale;
       parentViewParams.setMargins(margin, margin, margin, margin);
     }
+
     parentView.setLayoutParams(parentViewParams);
-    const border = new android.graphics.drawable.ShapeDrawable();
-    const backgroundColor = options.android.backgroundColor
-      ? new Color(options.android.backgroundColor).android
+    const backgroundColor = options.backgroundColor
+      ? new Color(options.backgroundColor).android
       : defaultBackgroundColor;
-    border.getPaint().setColor(backgroundColor);
-    const cornerRadiusValue = 8;
-    const cornerRadius = Array.create('float', 8);
-    cornerRadius[0] = cornerRadiusValue;
-    cornerRadius[1] = cornerRadiusValue;
-    cornerRadius[2] = cornerRadiusValue;
-    cornerRadius[3] = cornerRadiusValue;
-    cornerRadius[4] = cornerRadiusValue;
-    cornerRadius[5] = cornerRadiusValue;
-    cornerRadius[6] = cornerRadiusValue;
-    cornerRadius[7] = cornerRadiusValue;
-    const shape = new android.graphics.drawable.shapes.RoundRectShape(
-      cornerRadius,
-      null,
-      null
-    );
-    border.setShape(shape);
-    if (options.android.hideBezel) {
+
+    // handle hideBezel option
+    if (options.hideBezel) {
       parentView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
     } else {
+      const border = new android.graphics.drawable.ShapeDrawable();
+      border.getPaint().setColor(backgroundColor);
+      const cornerRadiusValue = 8;
+      const cornerRadius = Array.create('float', 8);
+      cornerRadius[0] = cornerRadiusValue;
+      cornerRadius[1] = cornerRadiusValue;
+      cornerRadius[2] = cornerRadiusValue;
+      cornerRadius[3] = cornerRadiusValue;
+      cornerRadius[4] = cornerRadiusValue;
+      cornerRadius[5] = cornerRadiusValue;
+      cornerRadius[6] = cornerRadiusValue;
+      cornerRadius[7] = cornerRadiusValue;
+      const shape = new android.graphics.drawable.shapes.RoundRectShape(
+        cornerRadius,
+        null,
+        null
+      );
+      border.setShape(shape);
       parentView.setBackgroundDrawable(border);
     }
 
@@ -191,8 +207,9 @@ export class LoadingIndicator {
       parentView.addView(progressView);
     }
 
+    // handle customView option
     if (options.mode === Mode.CustomView) {
-      if (options.android.customView) {
+      if (options.customView) {
         const customView = this._createCustomView(context, options);
         if (customView) {
           parentView.addView(customView);
@@ -200,11 +217,11 @@ export class LoadingIndicator {
       }
     }
 
-    if (options.message && options.mode !== Mode.CustomView) {
+    if (options.message) {
       const messageView = new android.widget.TextView(context);
       messageView.setText(options.message);
       messageView.setId(this._messageId);
-      if (options.android.color) {
+      if (options.color) {
         messageView.setTextColor(defaultTextNativeColor);
       }
       messageView.setLayoutParams(
@@ -216,9 +233,10 @@ export class LoadingIndicator {
       parentView.addView(messageView);
     }
 
-    if (options.android.details && options.mode !== Mode.CustomView) {
+    // handle details message text
+    if (options.details) {
       const detailsView = new android.widget.TextView(context);
-      detailsView.setText(options.android.details);
+      detailsView.setText(options.details);
       detailsView.setId(this._detailsId);
       detailsView.setTextColor(defaultDetailsNativeColor);
       detailsView.setLayoutParams(
@@ -266,6 +284,9 @@ export class LoadingIndicator {
         break;
       case Mode.Text:
         break;
+      case Mode.Indeterminate:
+        progressView.setIndeterminate(true);
+        break;
       default:
         progressView.setIndeterminate(
           options.progress !== undefined ? false : options.android.indeterminate
@@ -278,22 +299,27 @@ export class LoadingIndicator {
       options.mode === Mode.Determinate ||
       options.mode === Mode.AnnularDeterminate ||
       options.mode === Mode.DeterminateHorizontalBar ||
+      options.mode === Mode.Indeterminate ||
       !options.mode
     ) {
-      if (options.android.color) {
-        this._setColor(options.android.color, progressView);
-        this._currentProgressColor = new Color(options.android.color);
+      if (options.color) {
+        this._setColor(options.color, progressView);
+        this._currentProgressColor = new Color(options.color);
       }
-      if (options.android.backgroundColor) {
-        this._setBackgroundColor(options.android.backgroundColor, progressView);
+      // handle background color
+      if (options.backgroundColor) {
+        this._setBackgroundColor(options.backgroundColor, progressView);
       }
     }
+
     contentView.addView(parentView);
     this._popOver.setContentView(contentView);
     const view =
       topmost().android.rootViewGroup || topmost().currentPage.android;
-    if (options.android.view) {
-      const nativeView = options.android.view as android.view.View;
+
+    // handle anchoring target view
+    if (options.view) {
+      const nativeView = options.view as android.view.View;
       this._popOver.setWidth(nativeView.getWidth());
       this._popOver.setHeight(nativeView.getHeight());
       this._popOver.showAtLocation(
@@ -313,18 +339,18 @@ export class LoadingIndicator {
     const contentView = this._popOver.getContentView() as android.widget.LinearLayout;
     const parentView = contentView.getChildAt(0) as android.widget.LinearLayout;
     let count = parentView.getChildCount();
-    const defaultTextColor = new Color(options.android.color || 'black');
+    const defaultTextColor = new Color(options.color || 'black');
     const defaultTextNativeColor = defaultTextColor.android
       ? defaultTextColor.android
       : android.graphics.Color.BLACK;
-    
+
     const defaultDetailsNativeColor = new Color(
       255 * 0.8,
       defaultTextColor.r,
       defaultTextColor.g,
       defaultTextColor.b
     ).android;
-    
+
     if (options.mode === Mode.Text) {
       const progressView = parentView.getChildAt(0) as any;
       if (progressView) {
@@ -335,19 +361,20 @@ export class LoadingIndicator {
         }
       }
     }
-    
+
     if (options.mode === Mode.CustomView) {
       for (let i = 0; i < count; i++) {
         const view = parentView.getChildAt(i);
         parentView.removeView(view);
       }
       const customView = this._createCustomView(context, options);
+
       if (customView) {
         parentView.addView(customView);
       }
       count = parentView.getChildCount();
     }
-    
+
     if (
       options.progress &&
       options.mode !== Mode.Text &&
@@ -355,6 +382,7 @@ export class LoadingIndicator {
     ) {
       let progressView = parentView.getChildAt(0) as any;
       const progressViewId = progressView.getId();
+
       if (
         progressView instanceof android.widget.ProgressBar &&
         progressViewId === this._progressId &&
@@ -371,16 +399,19 @@ export class LoadingIndicator {
       }
       count = parentView.getChildCount();
 
-      if (options.android.color) {
-        this._setColor(options.android.color, progressView);
-        this._currentProgressColor = new Color(options.android.color);
+      if (options.color) {
+        this._setColor(options.color, progressView);
+        this._currentProgressColor = new Color(options.color);
       }
-      if (options.android.backgroundColor) {
-        this._setBackgroundColor(options.android.backgroundColor, progressView);
+
+      // handle background color
+      if (options.backgroundColor) {
+        this._setBackgroundColor(options.backgroundColor, progressView);
       }
 
       progressView.setProgress(options.progress * 100);
     }
+
     if (
       !options.progress &&
       options.mode !== Mode.Text &&
@@ -390,15 +421,17 @@ export class LoadingIndicator {
       const progressView = new android.widget.ProgressBar(context);
       progressView.setId(this._progressId);
       parentView.addView(progressView, 0);
-      if (options.android.color) {
-        this._setColor(options.android.color, progressView);
-        this._currentProgressColor = new Color(options.android.color);
+      if (options.color) {
+        this._setColor(options.color, progressView);
+        this._currentProgressColor = new Color(options.color);
       }
-      if (options.android.backgroundColor) {
-        this._setBackgroundColor(options.android.backgroundColor, progressView);
+      // handle background color
+      if (options.backgroundColor) {
+        this._setBackgroundColor(options.backgroundColor, progressView);
       }
       count = parentView.getChildCount();
     }
+
     if (options.message) {
       let messageView;
       let view;
@@ -453,19 +486,21 @@ export class LoadingIndicator {
       }
       count = parentView.getChildCount();
     }
-    if (options.android.details) {
+
+    // handle details message text
+    if (options.details) {
       let detailsView;
       switch (count) {
         case 1:
           const firstView = parentView.getChildAt(0) as any;
           if (firstView === this._detailsId) {
             firstView.setTextColor(defaultDetailsNativeColor);
-            firstView.setText(options.android.details);
+            firstView.setText(options.details);
           } else {
             detailsView = new android.widget.TextView(context);
             detailsView.setId(this._detailsId);
             detailsView.setTextColor(defaultDetailsNativeColor);
-            detailsView.setText(options.android.details);
+            detailsView.setText(options.details);
             detailsView.setLayoutParams(
               new android.widget.LinearLayout.LayoutParams(
                 android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -481,12 +516,12 @@ export class LoadingIndicator {
           const detailsViewId = detailsView.getId();
           if (detailsViewId === this._detailsId) {
             detailsView.setTextColor(defaultDetailsNativeColor);
-            detailsView.setText(options.android.details);
+            detailsView.setText(options.details);
           } else if (detailsViewId === this._messageId) {
             detailsView = new android.widget.TextView(context);
             detailsView.setId(this._detailsId);
             detailsView.setTextColor(defaultDetailsNativeColor);
-            detailsView.setText(options.android.details);
+            detailsView.setText(options.details);
             detailsView.setLayoutParams(
               new android.widget.LinearLayout.LayoutParams(
                 android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -499,7 +534,7 @@ export class LoadingIndicator {
         case 3:
           detailsView = parentView.getChildAt(2) as android.widget.TextView;
           detailsView.setTextColor(defaultDetailsNativeColor);
-          detailsView.setText(options.android.details);
+          detailsView.setText(options.details);
           break;
         default:
           break;
@@ -510,14 +545,14 @@ export class LoadingIndicator {
 
   private _createCustomView(context, options) {
     let customView;
-    if (options.android.customView instanceof android.graphics.Bitmap) {
+    if (options.customView instanceof android.graphics.Bitmap) {
       customView = new android.widget.ImageView(context);
-      customView.setImageBitmap(options.android.customView);
-    } else if (options.android.customView instanceof android.view.View) {
-      customView = options.android.customView;
-    } else if (typeof options.android.customView === 'string') {
+      customView.setImageBitmap(options.customView);
+    } else if (options.customView instanceof android.view.View) {
+      customView = options.customView;
+    } else if (typeof options.customView === 'string') {
       customView = new android.widget.ImageView(context);
-      const fileName = options.android.customView
+      const fileName = options.customView
         .replace('.jpg', '')
         .replace('.png', '')
         .replace('.jpeg', '');
@@ -620,17 +655,5 @@ export class LoadingIndicator {
       com.github.triniwiz.ns.loading.indicator.R.drawable
         .circular_progress_bar_thick
     );
-  }
-
-  public hide() {
-    if (this._popOver) {
-      this._popOver.dismiss();
-      this._popOver = null;
-      this._currentProgressColor = null;
-    }
-  }
-
-  private _getContext() {
-    return application.android.foregroundActivity;
   }
 }
