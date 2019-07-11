@@ -40,7 +40,7 @@ export enum Mode {
   AnnularDeterminate,
   DeterminateHorizontalBar,
   Text,
-  CustomView,
+  CustomView
 }
 
 export interface OptionsCommon {

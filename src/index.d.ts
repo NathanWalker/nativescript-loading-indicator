@@ -49,7 +49,6 @@ export enum Mode {
   CustomView
 }
 
-
 export class LoadingIndicator {
   show(options?: OptionsCommon): any;
   hide(): void;

@@ -1,12 +1,7 @@
-import { OptionsCommon } from './loading-indicator.common';
 import { Color } from 'tns-core-modules/color';
-import * as utils from 'tns-core-modules/utils/utils';
+import { OptionsCommon } from './loading-indicator.common';
 
 export * from './loading-indicator.common';
-declare var UIApplication: any;
-declare var UIImageView: any;
-declare var UIImage: any;
-declare var MBProgressHUDBackgroundStyle, UIColor;
 
 export class LoadingIndicator {
   private _hud: any;
@@ -16,7 +11,7 @@ export class LoadingIndicator {
 
   public show(options?: OptionsCommon) {
     if (typeof options === 'undefined') options = {};
-    let ios = options.ios;
+    const ios = options.ios;
 
     if (typeof this._hud === 'undefined') {
       // use specific target, fallback to entire window
@@ -42,7 +37,7 @@ export class LoadingIndicator {
           // detail label same color with 80% opacity of that color
           // TODO: allow specific control
           this._hud.detailsLabelColor = new Color(ios.color).ios;
-          this._hud.detailsLabel.opacity = .8;
+          this._hud.detailsLabel.opacity = 0.8;
         }
       }
       if (ios.backgroundColor) {
@@ -61,11 +56,15 @@ export class LoadingIndicator {
         this._hud.mode = ios.mode;
         if (ios.mode === MBProgressHUDMode.CustomView && ios.customView) {
           if (ios.customView instanceof UIImage) {
-            this._hud.customView = UIImageView.alloc().initWithImage(ios.customView);
+            this._hud.customView = UIImageView.alloc().initWithImage(
+              ios.customView
+            );
           } else if (ios.customView instanceof UIView) {
             this._hud.customView = ios.customView;
           } else if (typeof ios.customView === 'string') {
-            this._hud.customView = UIImageView.alloc().initWithImage(UIImage.imageNamed(ios.customView));
+            this._hud.customView = UIImageView.alloc().initWithImage(
+              UIImage.imageNamed(ios.customView)
+            );
           }
         }
       }
@@ -81,6 +80,7 @@ export class LoadingIndicator {
   }
 
   private _getRootWindow() {
-    return utils.ios.getter(UIApplication, UIApplication.sharedApplication).windows[0];
+    const x = UIApplication.sharedApplication.windows[0];
+    return x;
   }
 }

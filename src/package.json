@@ -1,6 +1,6 @@
 {
   "name": "nativescript-loading-indicator",
-  "version": "2.5.3",
+  "version": "2.6.0",
   "description": "A NativeScript plugin for showing an overlayed loading indicator.",
   "main": "loading-indicator",
   "typings": "index.d.ts",
@@ -15,7 +15,7 @@
     "url": "https://github.com/NathanWalker/nativescript-loading-indicator.git"
   },
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc -skipLibCheck",
     "build": "npm run tsc && npm run build.native",
     "build.native": "node scripts/build-native.js",
     "postclone": "npm i && node scripts/postclone.js && cd ../demo && npm i && npx rimraf -- package-lock.json && cd ../src",
@@ -30,6 +30,17 @@
     "clean": "npm run demo.reset && npx rimraf -- node_modules package-lock.json && npm i",
     "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/platforms/**'",
     "prepack": "npm run build.native"
+  },
+  "lint-staged": {
+    "**/*.{js, css, ts, json, scss, html, xml, md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "keywords": [
     "NativeScript",
@@ -50,6 +61,10 @@
     {
       "name": "Osei Fortune",
       "email": "fortune.osei@yahoo.com"
+    },
+    {
+      "name": "Brad Martin",
+      "email": "bradwaynemartin@gmail.com"
     }
   ],
   "bugs": {
@@ -59,8 +74,11 @@
   "homepage": "https://github.com/NathanWalker/nativescript-loading-indicator",
   "readmeFilename": "README.md",
   "devDependencies": {
+    "husky": "^3.0.0",
+    "lint-staged": "^9.1.0",
+    "prettier": "^1.18.2",
     "tns-core-modules": "^5.0.0",
-    "tns-platform-declarations": "^5.0.0",
+    "tns-platform-declarations": "6.0.0-rc-2019-06-28-175837-02",
     "typescript": "~3.3.3",
     "prompt": "^1.0.0",
     "rimraf": "^2.6.3",
