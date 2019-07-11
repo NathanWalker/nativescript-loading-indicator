@@ -55,11 +55,6 @@ export interface OptionsCommon {
   mode?: Mode;
 
   /**
-   * Native View instance to anchor the loading indicator to.
-   */
-  view?: any;
-
-  /**
    * If `mode` is set to CustomView, then you can pass an image or view to show in the loading indicator.
    */
   customView?: any;
@@ -76,10 +71,18 @@ export interface OptionsCommon {
 }
 
 export interface OptionsIOS {
+  /**
+   * Native View instance to anchor the loading indicator to.
+   */
+  view?: UIView;
   square?: boolean;
 }
 
 export interface OptionsAndroid {
+  /**
+   * Native View instance to anchor the loading indicator to.
+   */
+  view?: android.view.View;
   max?: number;
   progressNumberFormat?: string;
   progressPercentFormat?: number;

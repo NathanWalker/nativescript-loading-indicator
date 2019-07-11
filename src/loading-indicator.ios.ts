@@ -11,14 +11,17 @@ export class LoadingIndicator {
 
   show(options?: OptionsCommon) {
     if (typeof options === 'undefined') options = {};
-    const ios = options.ios;
 
     if (typeof this._hud === 'undefined') {
       // use specific target, fallback to entire window
       this._targetView =
-        options && options.view ? options.view : this._getRootWindow();
+        options.ios && options.ios.view
+          ? options.ios.view
+          : this._getRootWindow();
       this._hud = MBProgressHUD.showHUDAddedToAnimated(this._targetView, true);
     }
+    // ios specific
+    if (options.ios && options.ios.square) this._hud.square = true;
 
     // options
     if (options.message) {
@@ -88,11 +91,6 @@ export class LoadingIndicator {
           UIImage.imageNamed(options.customView)
         );
       }
-    }
-
-    // ios specific
-    if (ios) {
-      if (ios.square) this._hud.square = true;
     }
 
     return this._hud;

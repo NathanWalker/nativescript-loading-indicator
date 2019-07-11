@@ -289,7 +289,7 @@ export class LoadingIndicator {
         break;
       default:
         progressView.setIndeterminate(
-          options.progress !== undefined ? false : options.android.indeterminate
+          options.progress !== undefined ? false : true
         );
         break;
     }
@@ -318,8 +318,8 @@ export class LoadingIndicator {
       topmost().android.rootViewGroup || topmost().currentPage.android;
 
     // handle anchoring target view
-    if (options.view) {
-      const nativeView = options.view as android.view.View;
+    if (options.android.view) {
+      const nativeView = options.android.view as android.view.View;
       this._popOver.setWidth(nativeView.getWidth());
       this._popOver.setHeight(nativeView.getHeight());
       this._popOver.showAtLocation(
@@ -416,7 +416,7 @@ export class LoadingIndicator {
       !options.progress &&
       options.mode !== Mode.Text &&
       options.mode !== Mode.CustomView &&
-      options.android.indeterminate
+      options.mode === Mode.Indeterminate
     ) {
       const progressView = new android.widget.ProgressBar(context);
       progressView.setId(this._progressId);
