@@ -12,27 +12,26 @@ export class LoadingTest extends Observable {
     // uncomment - test target view
     // this.stackView = page.getViewById('stackView');
     this.indicator = new LoadingIndicator();
-    console.log('new indicator', this.indicator);
   }
 
   public showLoader() {
-    console.log('show loader');
-
     this.indicator.show({
       message: 'Loading test...'
     });
+
     setTimeout(() => {
       this.indicator.show({
         message: 'TextMode',
-        android: { mode: Mode.Text }
+        mode: Mode.Text
       });
-    }, 1000);
+    }, 2000);
+
     setTimeout(() => {
       this.indicator.show({
         message: 'Updating',
-        android: { indeterminate: true }
+        mode: Mode.Indeterminate
       });
-      this.demoProgress();
+      this.demoProgress('red');
     }, 3000);
 
     // to test target view
@@ -54,14 +53,8 @@ export class LoadingTest extends Observable {
   public showLoaderNoBezel() {
     this.indicator.show({
       message: 'Loading, no bezel!',
-      ios: {
-        color: '#000',
-        hideBezel: true
-      },
-      android: {
-        color: '#000',
-        hideBezel: true
-      }
+      color: '#38ef7d',
+      hideBezel: true
     });
     this.demoLoader();
   }
@@ -69,12 +62,11 @@ export class LoadingTest extends Observable {
   public showLoaderMsgAndDetails() {
     this.indicator.show({
       message: 'One moment',
-      ios: { details: 'Updating data...' }
+      details: 'Updating data...'
     });
     setTimeout(() => {
       this.indicator.show({
-        ios: { details: 'Transferring secret codes...' },
-        android: { details: 'Transferring secret codes...' }
+        details: 'Transferring secret codes...'
       });
       this.demoLoader();
     }, 1000);
@@ -88,65 +80,74 @@ export class LoadingTest extends Observable {
   public showLoaderMargin() {
     this.indicator.show({
       message: 'Message offset margin...',
-      ios: { margin: 30 }
+      margin: 30
     });
     this.demoLoader();
   }
 
   public showLoaderDimBg() {
     this.indicator.show({
-      ios: { dimBackground: true },
-      android: { dimBackground: true }
+      dimBackground: true,
+      message: 'Dimmed the background.',
+      color: '#3F5EFB'
     });
     this.demoLoader();
   }
 
   public showLoaderColor() {
     this.indicator.show({
-      ios: { color: '#fff', backgroundColor: '#4B9ED6' },
-      android: { color: '#fff', backgroundColor: '#4B9ED6' }
+      color: '#8A2BE2',
+      backgroundColor: '#4B9ED6'
     });
     this.demoLoader();
   }
 
+  public showLoaderIndeterminate() {
+    this.indicator.show({
+      message: 'Indeterminate Mode',
+      backgroundColor: '#3F5EFB',
+      color: '#fff000',
+      mode: Mode.Indeterminate
+    });
+
+    setTimeout(() => {
+      this.indicator.hide();
+    }, 3500);
+  }
+
   public showLoaderDeterminate() {
     this.indicator.show({
-      ios: { mode: MBProgressHUDMode.Determinate },
+      message: 'Determinate Mode',
+      backgroundColor: '#3F5EFB',
+      color: '#fff000',
       mode: Mode.Determinate
     });
-    this.demoProgress();
+    this.demoProgress('#fff000');
   }
 
   public showLoaderAnnularDeterminate() {
     this.indicator.show({
-      ios: {
-        mode: MBProgressHUDMode.AnnularDeterminate,
-        color: '#fff',
-        backgroundColor: '#4B9ED6'
-      },
-      mode: Mode.AnnularDeterminate,
-      android: { color: 'red', backgroundColor: 'green' }
+      message: 'Annular Determinate Mode',
+      color: '#38ef7d',
+      backgroundColor: '#000',
+      mode: Mode.AnnularDeterminate
     });
-    this.demoProgress();
+    this.demoProgress('#38ef7d');
   }
 
   public showLoaderDeterminateHorizontalBar() {
     this.indicator.show({
-      ios: {
-        mode: MBProgressHUDMode.DeterminateHorizontalBar,
-        color: 'red',
-        backgroundColor: 'white'
-      },
-      mode: Mode.DeterminateHorizontalBar,
-      android: { color: 'red', backgroundColor: 'white' }
+      message: 'Determinate Horizontal Bar Mode',
+      color: '#FF0099',
+      backgroundColor: '#240b36',
+      mode: Mode.DeterminateHorizontalBar
     });
-    this.demoProgress();
+    this.demoProgress('#FF0099');
   }
 
   public showLoaderModeText() {
     this.indicator.show({
       message: 'Text only',
-      ios: { mode: MBProgressHUDMode.Text },
       mode: Mode.Text
     });
     this.demoLoader();
@@ -155,8 +156,8 @@ export class LoadingTest extends Observable {
   public showLoaderModeCustom() {
     this.indicator.show({
       message: 'Completed',
-      ios: { mode: MBProgressHUDMode.CustomView, customView: 'Checkmark.png' },
-      android: { customView: 'checkmark.png' },
+      details: 'Go wild!',
+      customView: 'checkmark.png',
       mode: Mode.CustomView
     });
     this.demoLoader();
@@ -165,7 +166,6 @@ export class LoadingTest extends Observable {
   public showLoaderCancel() {
     let interval;
     this.indicator.show({
-      ios: { mode: MBProgressHUDMode.Determinate },
       mode: Mode.Determinate,
       android: {
         cancelable: true,
@@ -194,24 +194,24 @@ export class LoadingTest extends Observable {
     }, 3000);
   }
 
-  private demoProgress() {
+  private demoProgress(color = '#333') {
     setTimeout(() => {
-      this.indicator.show({ progress: 0.15 });
+      this.indicator.show({ progress: 0.15, color });
     }, 500);
     setTimeout(() => {
-      this.indicator.show({ progress: 0.35 });
+      this.indicator.show({ progress: 0.35, color });
     }, 1500);
     setTimeout(() => {
-      this.indicator.show({ progress: 0.65 });
+      this.indicator.show({ progress: 0.65, color });
     }, 2500);
     setTimeout(() => {
-      this.indicator.show({ progress: 0.85 });
+      this.indicator.show({ progress: 0.85, color });
     }, 4000);
     setTimeout(() => {
-      this.indicator.show({ progress: 0.99 });
+      this.indicator.show({ progress: 0.99, color });
     }, 4500);
     setTimeout(() => {
-      this.indicator.show({ progress: 1 });
+      this.indicator.show({ progress: 1, color });
       this.indicator.hide();
     }, 5000);
   }

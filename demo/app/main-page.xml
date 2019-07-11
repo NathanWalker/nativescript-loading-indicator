@@ -1,26 +1,31 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatedTo="navigatedTo">
-  <ActionBar title="Loading Indicator Demo"/>
-  <GridLayout rows="*,auto">
-    <ScrollView>
-      <StackLayout row="0">
-        <Button text="Message" tap="{{ showLoader }}" />
-        <Button text="Message - No Bezel" tap="{{ showLoaderNoBezel }}" />
+  <ActionBar title="Loading Indicator Demo" />
+  <GridLayout rows="*">
+    <ScrollView row="0" padding="10">
+      <StackLayout horizontalAlignment="center">
+        <Button text="Message" tap="{{ showLoader }}" class="btn-tide" />
+        <Button text="Message - No Bezel" tap="{{ showLoaderNoBezel }}" class="btn-burning" />
 
         <!-- uncomment test iOS target view, see main-view-model for more -->
         <!--<StackLayout width="300" height="300" id="stackView" backgroundColor="yellow">
         </StackLayout>-->
 
-        <Button text="Message w/details" tap="{{ showLoaderMsgAndDetails }}" />
-        <Button text="Square" tap="{{ showLoaderSquare }}" />
-        <Button text="Margin" tap="{{ showLoaderMargin }}" />
-        <Button text="Dim background" tap="{{ showLoaderDimBg }}" />
-        <Button text="Color" tap="{{ showLoaderColor }}" />
-        <Button text="Cancel Loader" tap="{{ showLoaderCancel }}" />
-        <Button text="Determinate" tap="{{ showLoaderDeterminate }}" />
-        <Button text="Annular determinate" tap="{{ showLoaderAnnularDeterminate }}" />
-        <Button text="Determinate horizontal bar" tap="{{ showLoaderDeterminateHorizontalBar }}" />
-        <Button text="Mode text" tap="{{ showLoaderModeText }}" />
-        <Button text="Mode custom" tap="{{ showLoaderModeCustom }}" />
+        <Button text="Message w/details" tap="{{ showLoaderMsgAndDetails }}" class="btn-tide" />
+        <ios>
+          <Button text="Square (iOS)" tap="{{ showLoaderSquare }}" class="btn-burning" />
+        </ios>
+        <Button text="Margin" tap="{{ showLoaderMargin }}" class="btn-tide" />
+        <Button text="Dim background" tap="{{ showLoaderDimBg }}" class="btn-burning" />
+        <Button text="Color" tap="{{ showLoaderColor }}" class="btn-tide" />
+        <android>
+          <Button text="Cancel Loader (Android)" tap="{{ showLoaderCancel }}" class="btn-burning" />
+        </android>
+        <Button text="Indeterminate" tap="{{ showLoaderIndeterminate }}" class="btn-tide" />
+        <Button text="Determinate" tap="{{ showLoaderDeterminate }}" class="btn-tide" />
+        <Button text="Annular determinate" tap="{{ showLoaderAnnularDeterminate }}" class="btn-burning" />
+        <Button text="Determinate horizontal bar" tap="{{ showLoaderDeterminateHorizontalBar }}" class="btn-tide" />
+        <Button text="Mode text" tap="{{ showLoaderModeText }}" class="btn-burning" />
+        <Button text="Mode custom" tap="{{ showLoaderModeCustom }}" class="btn-tide" />
       </StackLayout>
     </ScrollView>
   </GridLayout>
