@@ -313,16 +313,18 @@ export class LoadingIndicator {
     const contentView = this._popOver.getContentView() as android.widget.LinearLayout;
     const parentView = contentView.getChildAt(0) as android.widget.LinearLayout;
     let count = parentView.getChildCount();
-    const defaultTextColor = new Color(options.android.color || '#000');
+    const defaultTextColor = new Color(options.android.color || 'black');
     const defaultTextNativeColor = defaultTextColor.android
       ? defaultTextColor.android
       : android.graphics.Color.BLACK;
+    
     const defaultDetailsNativeColor = new Color(
       255 * 0.8,
       defaultTextColor.r,
       defaultTextColor.g,
       defaultTextColor.b
     ).android;
+    
     if (options.mode === Mode.Text) {
       const progressView = parentView.getChildAt(0) as any;
       if (progressView) {
@@ -333,6 +335,7 @@ export class LoadingIndicator {
         }
       }
     }
+    
     if (options.mode === Mode.CustomView) {
       for (let i = 0; i < count; i++) {
         const view = parentView.getChildAt(i);
@@ -344,6 +347,7 @@ export class LoadingIndicator {
       }
       count = parentView.getChildCount();
     }
+    
     if (
       options.progress &&
       options.mode !== Mode.Text &&
