@@ -1,34 +1,21 @@
+<h1 align="center">** DEPRECATION NOTICE **</h1>
+
+## Package has been deprecated as of July 11th, 2019.
+
+Please use the version published [by nStudio](https://github.com/nstudio/nativescript-loading-indicator).
+
+### Installation:
+
+`tns plugin add @nstudio/nativescript-loading-indicator`
+
+<hr>
+
 <a align="center" href="https://www.npmjs.com/package/nativescript-loading-indicator">
     <h3 align="center">NativeScript Loading Indicator</h3>
 </a>
 <h4 align="center">
 NativeScript-Loading-Indicator is a plugin for NativeScript which overlays a loading indicator on the current page. Can be used, for example, to prevent the UI being interacted with while data is being fetched from an API, while informing the user that something is happening.
 </h4>
-
-<p align="center">
-    <a href="https://www.npmjs.com/package/nativescript-loading-indicator">
-        <img src="https://img.shields.io/npm/v/nativescript-loading-indicator.svg" alt="npm">
-    </a>
-    <a href="https://www.npmjs.com/package/nativescript-loading-indicator">
-        <img src="https://img.shields.io/npm/dt/nativescript-loading-indicator.svg?label=npm%20downloads" alt="npm">
-    </a>
-    <a href="https://github.com/NathanWalker/nativescript-loading-indicator/stargazers">
-        <img src="https://img.shields.io/github/stars/NathanWalker/nativescript-loading-indicator.svg" alt="stars">
-    </a>
-     <a href="https://github.com/NathanWalker/nativescript-loading-indicator/network">
-        <img src="https://img.shields.io/github/forks/NathanWalker/nativescript-loading-indicator.svg" alt="forks">
-    </a>
-    <a href="https://github.com/NathanWalker/nativescript-loading-indicator/blob/master/LICENSE">
-        <img src="https://img.shields.io/github/license/NathanWalker/nativescript-loading-indicator.svg" alt="license">
-    </a>
-    <a href="http://nstudio.io">
-      <img src="https://github.com/nstudio/media/blob/master/images/nstudio-banner.png?raw=true" alt="nStudio banner">
-    </a>
-    <h5 align="center">Do you need assistance on your project or plugin? Contact the nStudio team anytime at <a href="mailto:team@nstudio.io">team@nstudio.io</a> to get up to speed with the best practices in mobile and web app development.
-    </h5>
-</p>
-
----
 
 ## Installation
 
