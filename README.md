@@ -36,10 +36,25 @@ NativeScript-Loading-Indicator is a plugin for NativeScript which overlays a loa
 tns plugin add nativescript-loading-indicator
 ```
 
-## Native Libraries
+## Screenshots
 
-- iOS: [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
-- Android: [PopupWindow](https://developer.android.com/reference/android/widget/PopupWindow.html) + [ProgressBar](https://developer.android.com/reference/android/widget/ProgressBar.html)
+### iOS
+
+<p align="center">
+  <img src="./screenshots/ios/1.png" style="max-width:200px" alt="iOS Example 1">
+  <img src="./screenshots/ios/2.png" style="max-width:200px" alt="iOS Example 2">
+  <img src="./screenshots/ios/3.png" style="max-width:200px" alt="iOS Example 3">
+  <img src="./screenshots/ios/4.png" style="max-width:200px" alt="iOS Example 4">
+</p>
+
+### Android
+
+<p align="center">
+  <img src="./screenshots/android/1.png" style="max-width:200px" alt="Android Example 1">
+  <img src="./screenshots/android/2.png" style="max-width:200px" alt="Android Example 2">
+  <img src="./screenshots/android/3.png" style="max-width:200px" alt="Android Example 3">
+  <img src="./screenshots/android/4.png" style="max-width:200px" alt="Android Example 4">
+</p>
 
 ## Example
 
@@ -243,9 +258,3 @@ export enum Mode {
   Text = 5
 }
 ```
-
-## Screenshots
-
-<img width="40%" src="screenshots/ios.png" alt="Loading indicator on iOS" float="left">
-
-<img width="50%" src="screenshots/android.png" alt="Loading indicator on Android" float="left">

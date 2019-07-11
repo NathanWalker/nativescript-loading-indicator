@@ -1,6 +1,8 @@
 import { LoadingIndicator, Mode } from 'nativescript-loading-indicator';
 import { Observable } from 'tns-core-modules/data/observable';
+import { confirm } from 'tns-core-modules/ui/dialogs';
 import { Page } from 'tns-core-modules/ui/page';
+import { openUrl } from 'tns-core-modules/utils/utils';
 
 export class LoadingTest extends Observable {
   private indicator: LoadingIndicator;
@@ -12,6 +14,19 @@ export class LoadingTest extends Observable {
     // uncomment - test target view
     // this.stackView = page.getViewById('stackView');
     this.indicator = new LoadingIndicator();
+  }
+
+  nStudioIconTap() {
+    confirm({
+      message:
+        'nStudio, LLC. specializes in custom software applications ranging from mobile, web, desktop, server and more. Would you like to visit nstudio.io?',
+      okButtonText: 'Yes',
+      cancelButtonText: 'Close'
+    }).then(result => {
+      if (result) {
+        openUrl('https://nstudio.io');
+      }
+    });
   }
 
   public showLoader() {

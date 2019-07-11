@@ -1,8 +1,17 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatedTo="navigatedTo">
-  <ActionBar title="Loading Indicator Demo" />
+
+  <ActionBar title="Loading Indicator Demo" icon="">
+    <NavigationButton text="Back" icon="" tap="" />
+    <ActionBar.actionItems>
+      <ActionItem icon="res://nstudio" tap="{{ nStudioIconTap }}" ios.position="right" />
+    </ActionBar.actionItems>
+  </ActionBar>
+
   <GridLayout rows="*">
     <ScrollView row="0" padding="10">
       <StackLayout horizontalAlignment="center">
+        <Label text="Made with ❤️ by nStudio" class="h2 text-center m-t-10" textWrap="true" />
+
         <Button text="Message" tap="{{ showLoader }}" class="btn-tide" />
         <Button text="Message - No Bezel" tap="{{ showLoaderNoBezel }}" class="btn-burning" />
 
