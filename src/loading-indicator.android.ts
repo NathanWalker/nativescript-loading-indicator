@@ -242,7 +242,7 @@ export class LoadingIndicator {
       0
     ) as android.widget.LinearLayout;
     let count = parentView.getChildCount();
-    const defaultTextColor = new Color(options.android.color || 'android');
+    const defaultTextColor = new Color(options.android.color || 'black');
     const defaultTextNativeColor = defaultTextColor.android ? defaultTextColor.android : android.graphics.Color.BLACK;
     const defaultDetailsNativeColor = new Color(255 * .8, defaultTextColor.r, defaultTextColor.g, defaultTextColor.b).android;
     if (options.mode === Mode.Text) {
