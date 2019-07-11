@@ -1,13 +1,20 @@
 ﻿@import '~nativescript-theme-core/css/core.light.css';
 
-.title {
-  font-size: 20;
-  horizontal-align: center;
-  margin: 20;
+Page {
+  background: linear-gradient(tobottom, #f0f2f0, #000c40);
 }
 
-button {
-  font-size: 22;
-  horizontal-align: center;
-  margin: 10px 0;
+ActionBar {
+  background-color: #f0f2f0;
+  color: #444;
+}
+
+.btn-tide {
+  background-color: #642b73;
+  color: white;
+}
+
+.btn-burning {
+  background-color: #ff4b2b;
+  color: white;
 }

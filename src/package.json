@@ -1,6 +1,6 @@
 {
   "name": "nativescript-loading-indicator",
-  "version": "2.6.0",
+  "version": "3.0.0",
   "description": "A NativeScript plugin for showing an overlayed loading indicator.",
   "main": "loading-indicator",
   "typings": "index.d.ts",
