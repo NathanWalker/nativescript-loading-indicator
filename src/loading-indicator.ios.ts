@@ -79,7 +79,6 @@ export class LoadingIndicator {
       (this._hud as any).mode === Mode.CustomView && // casting to any for custom enum we map to
       options.customView
     ) {
-      console.log('setting customView', options.customView);
       if (options.customView instanceof UIImage) {
         this._hud.customView = UIImageView.alloc().initWithImage(
           options.customView
